@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    counter-reset: section-amount;
+}
+
+#logo {
+    font-family: 'Pacifico', cursive;
+    color: var(--aquamarine);
+    font-size: 50px;
+    display: none;
+}
+
+h1 {
+    color: var(--light-green);
+}
+
+
+
+ h3 {
+    color: var(--indigo-dye);
+    font-weight: bold;
+}
+
+.navbar-list {
+    counter-reset: navbar-counter;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-decoration-color: transparent;
+
+}
+
+.navbar-link-label {
+    cursor: pointer;
+    color: #4a8195;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    text-decoration-color: transparent;
+}
+
+#navbar-link-cv {
+    padding: 10px;
+    border: 2px solid var(--text-color);
+    border-radius: 10px;
+    width: fit-content;
+
+}
+
+.navbar-list li {
+    counter-increment: navbar-counter;
+    list-style: none;
+    padding: 10px;
+}
+
+.navbar-list li:before {
+    content: "0" counter(navbar-counter) ". ";
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: bold;
+    color: #70f4e1;
+}
+
+.section-title {
+    font-size: 50px;
+    counter-increment: section-amount;
+    font-weight: bold;
+    --title-length: attr(data-title-length);
+    position: relative;
+    margin-bottom: 20px;
+    color: rgb(48, 153, 128);
+
+
+}
+
+.section-title:before {
+    content: "0" counter(section-amount) ". ";
+    font-size: 15px;
+    color: #70f4e1;
+    font-style: italic;
+
+}
+
+.page-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10vh;
+}
+
+#header {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    object-position: 80% 70%;
+    filter: contrast(1.2) brightness(1.3);
+}
+
+.timeline {
+    height: 100%;
+    width: 50px;
+    background-color: var(--rich-black);
+}
+
+#footer {
+    max-width: 100vw;
+    overflow: hidden;
+    background-color: var(--rich-black);
+}
