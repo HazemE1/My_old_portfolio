@@ -1,39 +1,37 @@
-import { onCall } from "firebase-functions/v2/https";
-import * as nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
-exports.contactForm = onCall({ region: "europe-west3" }, (request) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.mail.me.com", // e.g., 'gmail', 'outlook', or use your SMTP server settings
-    port: 587,
-    secure: true,
-    auth: {
-      user: "hazem.elkhalil@icloud.com", // Your email address
-      pass: "gnmk-lltk-froc-xyob", // Your email password or app-specific password
-    },
-  });
+const transporter = nodemailer.createTransport({
+  host: "smtp.mail.me.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "hazem.elkhalil@icloud.com",
+    pass: "gnmk-lltk-froc-xyob",
+  },
+});
 
-  const mailOptions = {
-    from: "<Ek Tech Solutions> hello@hazemelkhalil.com",
-    bcc: "hello@hazemelkhalil.com",
-    replyTo: "kontakta@hazemelkhalil.com",
-    to: "h.elkhalil@hotmail.com",
-    subject: "EkTechSolutions - Message Recived",
-    body: generateMail(),
-  };
+const mailOptions = {
+  from: "EkTechSolutions <hello@hazemelkhalil.com>",
+  bcc: "kontakta@hazemelkhalil.com",
+  replyTo: "kontakta@hazemelkhalil.com",
+  to: "h.elkhalil@hotmail.com",
+  subject: "Automatic response",
+  text: "This is an automatic response to your contact formula",
+  html: generateMail(),
+};
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email:", error);
-    } else {
-      console.log("Email sent:", info.response);
-    }
-  });
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    console.error("Error sending email:", error);
+  } else {
+    console.log("Email sent:", info.response);
+  }
 });
 
 function generateMail() {
   return (
     "" +
-    '  <body style="margin: 0;padding:0; height: 100vh; display: flex;flex-direction: column; justify-content: space-between;">' +
+    '  <body style="all: revert; margin: 0;padding:0; height: 100vh; display: flex;flex-direction: column; ">' +
     "" +
     "" +
     "    <section" +
@@ -74,7 +72,7 @@ function generateMail() {
     "" +
     '    <section style="padding: 30px;">' +
     '        <h2 style="color: #333;">We Recognize the Message You\'ve Sent</h2>' +
-    '        <p style="font-size: 16px; ">' +
+    '        <span style="font-size: 16px; ">' +
     "            Thank you for reaching out to us. We have received your message and understand your needs." +
     "            At Ek Tech Solutions, we specialize in providing the following services to meet your requirements:" +
     "    " +
@@ -84,8 +82,8 @@ function generateMail() {
     '                <li style="list-style-type: disc; margin-left: 20px;">SEO and Web Performance Improvements: Enhance your online presence and site speed.</li>' +
     "            </ul>" +
     "    " +
-    '            For more details and to calculate the pricing for your specific project, please visit our <a href="https://www.example.com/pricing">Pricing Page</a>.' +
-    "        </p>" +
+    '            For more details and to calculate the pricing for your specific project, please visit our <a href="https://www.example.com/pricing">Pricing Page</a>' +
+    "        </span>" +
     "    </section>" +
     "" +
     '    <footer style="background: #333; color: #fff; text-align: center; padding: 10px;">' +

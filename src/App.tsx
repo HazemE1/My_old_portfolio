@@ -1,28 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 import Home from "./pages/Home";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import PriceCalculations from "./pages/PriceCalculations";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/calculate",
+      element: <PriceCalculations />,
+    },
+  ]);
 
-
-
-  return (
-      <Home/>
-  );
+  return <RouterProvider router={router} />;
 }
 
 function LoadingScreen() {
-  return <div className="App">
-    <header className="App-header">
-      <div className={"App-logo"}>
-        <img src={logo} alt="logo"/>
-        <p>
-          Welcome <code>to</code> Hazem Elkhalil's Portfolio.
-        </p>
-      </div>
-    </header>
-  </div>
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div className={"App-logo"}>
+          <img src={logo} alt="logo" />
+          <p>
+            Welcome <code>to</code> Hazem Elkhalil's Portfolio.
+          </p>
+        </div>
+      </header>
+    </div>
+  );
 }
 
 export default App;
