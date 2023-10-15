@@ -3,9 +3,10 @@ export interface WorkObject {
   skills: string[];
   description: string;
   imgSrc?: string;
-  liveLink?: string;
-  githubLink?: string;
+  link?: string;
   state: State;
+  year: number;
+  employer: string;
 }
 
 export enum State {
@@ -31,7 +32,9 @@ const workObjects: WorkObject[] = [
       "risk education.",
     imgSrc:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-13bbf.appspot.com/o/HalkanSVG.svg?alt=media&token=4c055e3e-b3cb-47b7-a954-1876e52c127a",
-    liveLink: "https://halkan.se",
+    link: "https://halkan.se",
+    year: 2022,
+    employer: "Ek Tech Solutions",
   },
   {
     name: "Loyalties",
@@ -46,10 +49,12 @@ const workObjects: WorkObject[] = [
       "\n" +
       "Stay tuned for the official launch of Loyalties, where you'll be able to enjoy the benefits of seamless loyalty point collection, exclusive rewards, and a personalized shopping experience. Get ready to unlock a world of loyalty benefits and make the most out of your shopping endeavors with Loyalties!",
 
-    githubLink: "https://github.com/HazemE1/loyalties",
+    link: "https://github.com/HazemE1/loyalties",
+    year: 2019,
+    employer: "Ek Tech Solutions",
   },
   {
-    name: "TIE",
+    name: "T.I.E",
     state: State.INACTIVE,
     skills: ["WIX", "VELO"],
     description:
@@ -63,7 +68,10 @@ const workObjects: WorkObject[] = [
       "using platforms like WIX, while contributing to TIE's mission of empowering aspiring entrepreneurs.",
     imgSrc:
       "https://firebasestorage.googleapis.com/v0/b/portfolio-13bbf.appspot.com/o/TIE.svg?alt=media&token=d826d740-66ad-4ffc-b282-cc82f020dafa",
+    year: 2019,
+    link: "https://fadibarazi.wixsite.com/my-site",
+    employer: "Ek Tech Solutions",
   },
 ];
 
-export default workObjects;
+export default workObjects.sort((o, t) => t.year - o.year);

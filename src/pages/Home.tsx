@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useEffect } from "react";
 import get_in_touch from "../media/getintouch.png";
-import pb_bild_jag from "../media/jag2.jpg";
+import pb_bild_jag from "../media/jag.png";
 import wallpaperVideo from "../media/wallpaper.mp4";
 import { skills } from "../objects/SkillsetObject";
 import workObjects from "../objects/WorkObject";
@@ -58,6 +58,7 @@ export default function Home() {
   return (
     <div
       style={{
+        scrollSnapType: "y mandatory",
         maxWidth: "100vw",
       }}
     >
@@ -118,27 +119,29 @@ export default function Home() {
                     width: { xs: "80%", md: "50%", xl: "40%" },
                   }}
                 >
-                  <a
-                    href="#current-project"
-                    className="section-home-links"
-                    style={{ color: "var(--indigo-dye)" }}
-                  >
-                    Current projects
-                  </a>
-                  <a
-                    href="#my-skillset"
-                    className="section-home-links"
-                    style={{ color: "var(--rich-black)" }}
-                  >
-                    My skillset
-                  </a>
-                  <a
-                    href="/calculate"
-                    className="section-home-links"
-                    style={{ color: "var(--light-green)" }}
-                  >
-                    Price calculation
-                  </a>
+                  <div className="w-full flex justify-between animate-FoldIn delay-500">
+                    <a
+                      href="/work"
+                      className="text-shadow-sm shadow-slate-500 font-bold section-home-links uppercase font-mono hover:scale-105"
+                      style={{ color: "var(--indigo-dye)" }}
+                    >
+                      Previous Work
+                    </a>
+                    <a
+                      href="#my-skillset"
+                      className="text-shadow-sm shadow-black/50 section-home-links uppercase font-mono hover:scale-105"
+                      style={{ color: "var(--rich-black)" }}
+                    >
+                      My skillset
+                    </a>
+                    <a
+                      href="/calculate"
+                      className="text-shadow-sm shadow-green-500 section-home-links uppercase font-mono hover:scale-105"
+                      style={{ color: "var(--light-green)" }}
+                    >
+                      Price calculation
+                    </a>
+                  </div>
                 </Box>
               </Grid>
             </Grid>
@@ -158,16 +161,16 @@ export default function Home() {
             My offerings
           </h1>
           <Grid
+            gap={10}
             container
-            spacing={10}
-            style={{ width: "100%", justifyContent: "space-between" }}
+            style={{ width: "100%", justifyContent: "center" }}
           >
             {Offerings.map((offering) => {
               return (
                 <Grid
                   item
                   sx={{
-                    width: { sm: "100%", md: "50%", xl: "25%" },
+                    width: { sm: "100%", md: "50%", xl: "30%" },
                     height: 600,
                   }}
                 >
@@ -175,15 +178,11 @@ export default function Home() {
                 </Grid>
               );
             })}
-            <Grid
-              item
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <h2
+          </Grid>
+          <div className="w-full flex justify-center">
+            <a href="/calculate" className="mt-4 font-bold ">
+              <h4
+                className="w-fit  text-2xl hover:scale-105 uppercase"
                 style={{
                   textAlign: "center",
                   textDecoration: "none",
@@ -191,9 +190,9 @@ export default function Home() {
                 }}
               >
                 Calculate your price
-              </h2>
-            </Grid>
-          </Grid>
+              </h4>
+            </a>
+          </div>
         </div>
       </Box>
       <Box className={"page-section"} sx={styles.pageSections}>
@@ -204,107 +203,72 @@ export default function Home() {
           <h1 className={"section-title"} style={{ textAlign: "center" }}>
             About me
           </h1>
-          <Grid
-            container
-            style={{ height: "100%", width: "100%", alignItems: "center" }}
+          <Box
+            style={{
+              display: "flex",
+              height: "100%",
+              width: "100%",
+              justifyItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Grid item xs={0} xl={2} />
-            <Grid item xs={12} xl={4}>
-              <p style={{ textAlign: "justify" }}>
-                <p style={{ fontSize: 18, whiteSpace: "break-spaces" }}>
-                  Hello, I'm Hazem Elkhalil, a seasoned software developer with
-                  a deep passion for creating outstanding digital experiences.
-                  With over a decade of experience in the field, I bring a
-                  wealth of knowledge and skills to the table as your trusted
-                  software development consultant.
-                  {"\n"}
-                  {"\n"}
-                  From my early start in Java at the age of 11, I have expanded
-                  my expertise to include front-end and back-end development,
-                  covering a wide range of programming languages such as HTML,
-                  CSS, JavaScript, Java, C#, Node.js, and more. My proficiency
-                  extends beyond coding; I am also well-versed in cloud
-                  technologies like AWS and Firebase, as well as databases such
-                  as MySQL and SQLite.
-                  {"\n"}
-                  {"\n"}
-                  Passion is at the core of everything I do. It drives me to
-                  constantly stay updated with the latest industry trends,
-                  tools, and best practices. This dedication ensures that I
-                  bring cutting-edge solutions to your projects, keeping you at
-                  the forefront of the rapidly evolving technology landscape.
-                  {"\n"}
-                  {"\n"}I pride myself on my ability to understand your unique
-                  requirements and translate them into practical and scalable
-                  software solutions. Clear and open communication is crucial to
-                  our collaboration, and I will work closely with you to ensure
-                  that your vision and goals are met at every stage of the
-                  development process.
-                  {"\n"}
-                  {"\n"}
-                  By choosing me as your software development consultant, you
-                  gain a committed partner who genuinely cares about your
-                  success. I approach every project with unwavering enthusiasm,
-                  striving for excellence and delivering high-quality work that
-                  surpasses expectations.
-                  {"\n"}
-                  {"\n"}
-                  Your satisfaction is my top priority, and I will go above and
-                  beyond to ensure that your projects are executed flawlessly,
-                  on time, and within budget. Together, we can navigate the
-                  challenges of the digital landscape and unlock the
-                  transformative power of innovative software solutions for your
-                  organization.
-                  {"\n"}
-                  {"\n"}
-                  <strong>
-                    Let's embark on this exciting journey together and achieve
-                    remarkable results.
-                  </strong>{" "}
-                </p>
-              </p>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              xl={6}
+            <p
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
+                width: "80%",
+                fontSize: 18,
+                whiteSpace: "break-spaces",
+                textAlign: "justify",
               }}
             >
-              <Paper
-                elevation={0}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignContent: "center",
-                  borderRadius: 10,
-                  background: "transparent",
-                  overflow: "hidden",
-                  width: { xs: 250, md: 400, xl: 800 },
-                  height: { xs: 250, md: 400, xl: 800 },
-                }}
-              >
-                <img
-                  src={pb_bild_jag}
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "top",
-                    filter: "brightness(0.8) drop-shadow(0 3px 8px rgb(0,0,0))",
-                    maxHeight: "100%",
-                    maxWidth: "100%",
-                    alignSelf: "center",
-                    borderRadius: 10,
-                  }}
-                />
-              </Paper>
-            </Grid>
-          </Grid>
+              Hello, I'm Hazem Elkhalil, a seasoned software developer with a
+              deep passion for creating outstanding digital experiences. With
+              over a decade of experience in the field, I bring a wealth of
+              knowledge and skills to the table as your trusted software
+              development consultant.
+              {"\n"}
+              {"\n"}
+              From my early start in Java at the age of 11, I have expanded my
+              expertise to include front-end and back-end development, covering
+              a wide range of programming languages such as HTML, CSS,
+              JavaScript, Java, C#, Node.js, and more. My proficiency extends
+              beyond coding; I am also well-versed in cloud technologies like
+              AWS and Firebase, as well as databases such as MySQL and SQLite.
+              {"\n"}
+              {"\n"}
+              Passion is at the core of everything I do. It drives me to
+              constantly stay updated with the latest industry trends, tools,
+              and best practices. This dedication ensures that I bring
+              cutting-edge solutions to your projects, keeping you at the
+              forefront of the rapidly evolving technology landscape.
+              {"\n"}
+              {"\n"}I pride myself on my ability to understand your unique
+              requirements and translate them into practical and scalable
+              software solutions. Clear and open communication is crucial to our
+              collaboration, and I will work closely with you to ensure that
+              your vision and goals are met at every stage of the development
+              process.
+              {"\n"}
+              {"\n"}
+              By choosing me as your software development consultant, you gain a
+              committed partner who genuinely cares about your success. I
+              approach every project with unwavering enthusiasm, striving for
+              excellence and delivering high-quality work that surpasses
+              expectations.
+              {"\n"}
+              {"\n"}
+              Your satisfaction is my top priority, and I will go above and
+              beyond to ensure that your projects are executed flawlessly, on
+              time, and within budget. Together, we can navigate the challenges
+              of the digital landscape and unlock the transformative power of
+              innovative software solutions for your organization.
+              {"\n"}
+              {"\n"}
+              <strong>
+                Let's embark on this exciting journey together and achieve
+                remarkable results.
+              </strong>{" "}
+            </p>
+          </Box>
         </div>
       </Box>
       <Box id="my-skillset" className={"page-section"} sx={styles.pagePadding}>
@@ -335,33 +299,6 @@ export default function Home() {
         </div>
       </Box>
 
-      <Box
-        id="current-project"
-        className={"page-section"}
-        sx={styles.pagePadding}
-      >
-        <div
-          className="page-section-body"
-          style={{ height: "100%", width: "100%" }}
-        >
-          <h1 className={"section-title"} style={{ textAlign: "center" }}>
-            My projects
-          </h1>
-          <Grid
-            container
-            spacing={5}
-            style={{ width: "100%", justifyContent: "space-between" }}
-          >
-            {workObjects.map((workObject) => {
-              return (
-                <Grid item xs={12} md={4} xl={3}>
-                  <WorkComponent workObject={workObject} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </div>
-      </Box>
       <Box className={"page-section"} id={"footer"}>
         <div
           className="page-section-body"
@@ -375,10 +312,17 @@ export default function Home() {
             position: "relative",
           }}
         >
-          <h1 className={"section-title"} style={{ textAlign: "center" }}>
+          <h1
+            className={"section-title"}
+            style={{ textAlign: "center", marginBottom: 1 }}
+          >
             Get in touch
           </h1>
-          <Grid container style={{ justifyContent: "center" }}>
+          <p>
+            Do you have any questions? Fill in the message below and we will get
+            intouch within 24h
+          </p>
+          <Grid container style={{ justifyContent: "center", marginTop: 20 }}>
             <Grid
               item
               xs={12}
@@ -422,27 +366,6 @@ export default function Home() {
               marginBottom: 10,
             }}
           >
-            <a
-              href="#top"
-              id="back-to-top"
-              style={{
-                position: "absolute",
-                top: 1,
-                right: 40,
-                fontSize: 90,
-                textAlign: "center",
-                textDecoration: "none",
-                lineHeight: 0.1,
-                color: "wheat",
-              }}
-            >
-              <span>⮴</span>
-              <br />
-              <span style={{ fontSize: 20, fontWeight: "bold" }}>
-                BACK TO TOP
-              </span>
-            </a>
-
             <p
               style={{
                 textAlign: "center",

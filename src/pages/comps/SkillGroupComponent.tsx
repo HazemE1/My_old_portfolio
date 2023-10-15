@@ -60,6 +60,7 @@ export default function SkillGroupComponent(props: { skillGroup: Group }) {
         >
           <Grid item xs={12}>
             <h1
+              className="text-2x"
               style={{
                 textAlign: "justify",
                 color: "white",

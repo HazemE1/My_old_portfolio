@@ -3,7 +3,7 @@ import { OfferingItem } from "../../objects/OfferingsObject";
 
 const className = {
   optionButton: "w-full h-40 max-w-xs bg-slate-500 rounded-xl p-3 ",
-  optionButtonActive: "w-full  h-40  bg-green-500 rounded-xl p-3 ",
+  optionButtonActive: "w-full max-w-xs h-40  bg-green-500 rounded-xl p-3 ",
 };
 
 function ItemComp({
