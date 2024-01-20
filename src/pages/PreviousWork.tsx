@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import workObjects from "../objects/WorkObject";
 function PreviousWork() {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen">
-      <div className="">
+    <div className="flex flex-col justify-center items-center w-screen h-screen">
+      <div className=" w-full xl:w-fit">
         <div>
           <Link
             to={"/"}
@@ -31,9 +31,9 @@ function PreviousWork() {
           <h1 className="text-5xl font-bold text-white mb-24">All Projects</h1>
         </div>
 
-        <div className="relative overflow-x-auto">
+        <div className="relative overflow-x-hidden">
           <table className="w-full text-sm text-left text-slate-400 ">
-            <thead className="text-sm text-gray-200 font-bold uppercase border-b">
+            <thead className="text-sm  text-gray-200 font-bold uppercase border-b">
               <tr>
                 <th scope="col" className="px-2 py-3">
                   Year
@@ -44,10 +44,10 @@ function PreviousWork() {
                 <th scope="col" className="px-6 py-3">
                   Technology
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="hidden xl:table-cell px-6 py-3">
                   Employer
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="hidden xl:table-cell  px-6 py-3">
                   Link
                 </th>
               </tr>
@@ -67,15 +67,17 @@ function PreviousWork() {
                       {work.skills.map((skill, index) => (
                         <span
                           key={index}
-                          className="p-1 w-1/3 bg-slate-500 bg-opacity-30 rounded-full m-1"
+                          className="p-2 w-full xl:w-1/3 bg-slate-500 bg-opacity-30 rounded-full m-1"
                           style={{ flexBasis: "calc(33.33% - 2rem)" }} // Adjust margin as needed
                         >
                           {skill}
                         </span>
                       ))}
                     </td>
-                    <td className="px-6 py-4">{work.employer}</td>
-                    <td className="px-6 py-4">
+                    <td className="hidden xl:inline-block px-6 py-4">
+                      {work.employer}
+                    </td>
+                    <td className="hidden xl:inline-block px-6 py-4">
                       <a href={work.link} target="_blank">
                         {work.link}
                       </a>

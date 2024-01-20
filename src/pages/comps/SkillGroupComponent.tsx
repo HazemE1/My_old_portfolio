@@ -76,7 +76,10 @@ export default function SkillGroupComponent(props: { skillGroup: Group }) {
               {skillGroup.skills.map((skill, index, arr) => {
                 return (
                   <>
-                    <code style={{ textAlign: "center", whiteSpace: "pre" }}>
+                    <code
+                      className="text-center xl:whitespace-pre"
+                      style={{ textAlign: "center" }}
+                    >
                       {" "}
                       {skill.skill}{" "}
                     </code>

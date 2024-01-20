@@ -1,16 +1,15 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import { useEffect } from "react";
-import get_in_touch from "../media/getintouch.png";
-import pb_bild_jag from "../media/jag.png";
+import { useEffect, useState } from "react";
+
 import wallpaperVideo from "../media/wallpaper.mp4";
 import { skills } from "../objects/SkillsetObject";
-import workObjects from "../objects/WorkObject";
 import AutoPlaySilentVideo from "./comps/AutoPlaySilentVideo";
-import WorkComponent from "./comps/WorkComponent";
 import "./css/Home.css";
 import SkillGroupComponent from "./comps/SkillGroupComponent";
 import OfferingComponent from "./comps/OfferingComponent";
 import { Offerings } from "../objects/OfferingsObject";
+
+import MailObject from "./comps/MailObject";
 
 const styles = {
   pageSections: {
@@ -26,11 +25,7 @@ const styles = {
     alignContent: "center",
     alignItems: "center",
   },
-  mailFields: {
-    width: "100%",
-    margin: 1,
-    input: { color: "white" },
-  },
+  mailFields: {},
   pagePadding: {
     paddingLeft: { xs: 0, xl: "10vw" },
     paddingRight: { xs: 0, xl: "10vw" },
@@ -55,14 +50,29 @@ export default function Home() {
     });
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("mousemove", (e) => {
+      const cursorFollow = document.getElementById("cursor-follow")!;
+      if (cursorFollow === null) return;
+      const height = cursorFollow.offsetHeight;
+      const width = cursorFollow.offsetWidth;
+      setTimeout(() => {
+        cursorFollow.style.left = `${e.pageX - width / 2}px`;
+        cursorFollow.style.top = `${e.pageY - height / 2}px`;
+      }, 200);
+    });
+  }, []);
+
   return (
     <div
+      className="relative"
       style={{
         scrollSnapType: "y mandatory",
         maxWidth: "100vw",
+        overflow: "hidden",
       }}
     >
-      <Box id="top" className={"page-section"}>
+      <Box id="top" className={" page-section"}>
         <Box id={"header"} style={{ background: "rgba(255,255,255,0.3)" }}>
           <div>
             <AutoPlaySilentVideo idName={"bg-video"} video={wallpaperVideo} />
@@ -128,18 +138,18 @@ export default function Home() {
                       Previous Work
                     </a>
                     <a
-                      href="#my-skillset"
-                      className="text-shadow-sm shadow-black/50 section-home-links uppercase font-mono hover:scale-105"
+                      href="#contact"
+                      className="text-shadow-sm hidden xl:block shadow-black/50 section-home-links uppercase font-mono hover:scale-105"
                       style={{ color: "var(--rich-black)" }}
                     >
-                      My skillset
+                      Lets get in touch!
                     </a>
                     <a
-                      href="/calculate"
+                      href="#my-skillset"
                       className="text-shadow-sm shadow-green-500 section-home-links uppercase font-mono hover:scale-105"
                       style={{ color: "var(--light-green)" }}
                     >
-                      Price calculation
+                      My skillset
                     </a>
                   </div>
                 </Box>
@@ -148,234 +158,218 @@ export default function Home() {
           </div>
         </Box>
       </Box>
-      <Box
-        id="current-project"
-        className={"page-section"}
-        sx={styles.pagePadding}
-      >
+      <div className="relative">
         <div
-          className="page-section-body"
-          style={{ height: "100%", width: "100%" }}
+          id="cursor-follow"
+          className="pointer-events-none sticky  z-30 transition duration-300 w-52 h-52 lg:absolute"
+          style={{
+            background: "rgba(0,0,255,0.7)",
+            position: "sticky",
+            filter: "blur(350px)",
+          }}
+        ></div>
+        <Box
+          id="current-project"
+          className={"page-section"}
+          sx={styles.pagePadding}
         >
-          <h1 className={"section-title"} style={{ textAlign: "center" }}>
-            My offerings
-          </h1>
-          <Grid
-            gap={10}
-            container
-            style={{ width: "100%", justifyContent: "center" }}
+          <div
+            className="page-section-body"
+            style={{ height: "100%", width: "100%" }}
           >
-            {Offerings.map((offering) => {
-              return (
-                <Grid
-                  item
-                  sx={{
-                    width: { sm: "100%", md: "50%", xl: "30%" },
-                    height: 600,
+            <h1 className={"section-title"} style={{ textAlign: "center" }}>
+              My offerings
+            </h1>
+            <Grid
+              gap={10}
+              container
+              style={{ width: "100%", justifyContent: "center" }}
+            >
+              {Offerings.map((offering) => {
+                return (
+                  <Grid
+                    item
+                    sx={{
+                      width: { sm: "100%", md: "50%", xl: "30%" },
+                      height: 600,
+                    }}
+                  >
+                    <OfferingComponent offering={offering} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+            <div className="w-full flex justify-center">
+              <a className="mt-4 font-bold cursor-pointer ">
+                <h4
+                  className="w-fit text-md xl:text-2xl hover:scale-105 uppercase"
+                  style={{
+                    textAlign: "center",
+                    textDecoration: "none",
+                    textDecorationLine: "none",
                   }}
                 >
-                  <OfferingComponent offering={offering} />
-                </Grid>
-              );
-            })}
-          </Grid>
-          <div className="w-full flex justify-center">
-            <a href="/calculate" className="mt-4 font-bold ">
-              <h4
-                className="w-fit  text-2xl hover:scale-105 uppercase"
+                  I dont offer any service at this time
+                </h4>
+              </a>
+            </div>
+          </div>
+        </Box>
+        <Box className={"page-section"} sx={styles.pageSections}>
+          <div
+            className="page-section-body"
+            style={{ height: "100%", width: "100%" }}
+          >
+            <h1 className={"section-title"} style={{ textAlign: "center" }}>
+              About me
+            </h1>
+            <Box
+              style={{
+                display: "flex",
+                height: "100%",
+                width: "100%",
+                justifyItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <p
                 style={{
-                  textAlign: "center",
-                  textDecoration: "none",
-                  textDecorationLine: "none",
+                  width: "80%",
+                  fontSize: 18,
+                  whiteSpace: "break-spaces",
+                  textAlign: "justify",
                 }}
               >
-                Calculate your price
-              </h4>
-            </a>
+                Hello, I'm Hazem Elkhalil, a seasoned software developer with a
+                deep passion for creating outstanding digital experiences. With
+                over a decade of experience in the field, I bring a wealth of
+                knowledge and skills to the table as your trusted software
+                development consultant.
+                {"\n"}
+                {"\n"}
+                From my early start in Java at the age of 11, I have expanded my
+                expertise to include front-end and back-end development,
+                covering a wide range of programming languages such as HTML,
+                CSS, JavaScript, Java, C#, Node.js, and more. My proficiency
+                extends beyond coding; I am also well-versed in cloud
+                technologies like AWS and Firebase, as well as databases such as
+                MySQL and SQLite.
+                {"\n"}
+                {"\n"}
+                Passion is at the core of everything I do. It drives me to
+                constantly stay updated with the latest industry trends, tools,
+                and best practices. This dedication ensures that I bring
+                cutting-edge solutions to your projects, keeping you at the
+                forefront of the rapidly evolving technology landscape.
+                {"\n"}
+                {"\n"}I pride myself on my ability to understand your unique
+                requirements and translate them into practical and scalable
+                software solutions. Clear and open communication is crucial to
+                our collaboration, and I will work closely with you to ensure
+                that your vision and goals are met at every stage of the
+                development process.
+                {"\n"}
+                {"\n"}
+                By choosing me as your software development consultant, you gain
+                a committed partner who genuinely cares about your success. I
+                approach every project with unwavering enthusiasm, striving for
+                excellence and delivering high-quality work that surpasses
+                expectations.
+                {"\n"}
+                {"\n"}
+                Your satisfaction is my top priority, and I will go above and
+                beyond to ensure that your projects are executed flawlessly, on
+                time, and within budget. Together, we can navigate the
+                challenges of the digital landscape and unlock the
+                transformative power of innovative software solutions for your
+                organization.
+                {"\n"}
+                {"\n"}
+                <strong>
+                  Let's embark on this exciting journey together and achieve
+                  remarkable results.
+                </strong>{" "}
+              </p>
+            </Box>
           </div>
-        </div>
-      </Box>
-      <Box className={"page-section"} sx={styles.pageSections}>
-        <div
-          className="page-section-body"
-          style={{ height: "100%", width: "100%" }}
+        </Box>
+        <Box
+          id="my-skillset"
+          className={"page-section"}
+          sx={styles.pagePadding}
         >
-          <h1 className={"section-title"} style={{ textAlign: "center" }}>
-            About me
-          </h1>
-          <Box
+          <div
+            className="page-section-body"
+            style={{ height: "100%", width: "100%" }}
+          >
+            <h1 className={"section-title"} style={{ textAlign: "center" }}>
+              My skillset
+            </h1>
+            <Grid container spacing={5} style={{ width: "100%" }}>
+              {skills.map((skillGroup) => {
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    xl={3}
+                    sx={{
+                      height: 500,
+                    }}
+                  >
+                    <SkillGroupComponent skillGroup={skillGroup} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </div>
+        </Box>
+        <Box className={"page-section"} id={"footer"}>
+          <div
+            className="page-section-body"
             style={{
-              display: "flex",
               height: "100%",
               width: "100%",
-              justifyItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p
-              style={{
-                width: "80%",
-                fontSize: 18,
-                whiteSpace: "break-spaces",
-                textAlign: "justify",
-              }}
-            >
-              Hello, I'm Hazem Elkhalil, a seasoned software developer with a
-              deep passion for creating outstanding digital experiences. With
-              over a decade of experience in the field, I bring a wealth of
-              knowledge and skills to the table as your trusted software
-              development consultant.
-              {"\n"}
-              {"\n"}
-              From my early start in Java at the age of 11, I have expanded my
-              expertise to include front-end and back-end development, covering
-              a wide range of programming languages such as HTML, CSS,
-              JavaScript, Java, C#, Node.js, and more. My proficiency extends
-              beyond coding; I am also well-versed in cloud technologies like
-              AWS and Firebase, as well as databases such as MySQL and SQLite.
-              {"\n"}
-              {"\n"}
-              Passion is at the core of everything I do. It drives me to
-              constantly stay updated with the latest industry trends, tools,
-              and best practices. This dedication ensures that I bring
-              cutting-edge solutions to your projects, keeping you at the
-              forefront of the rapidly evolving technology landscape.
-              {"\n"}
-              {"\n"}I pride myself on my ability to understand your unique
-              requirements and translate them into practical and scalable
-              software solutions. Clear and open communication is crucial to our
-              collaboration, and I will work closely with you to ensure that
-              your vision and goals are met at every stage of the development
-              process.
-              {"\n"}
-              {"\n"}
-              By choosing me as your software development consultant, you gain a
-              committed partner who genuinely cares about your success. I
-              approach every project with unwavering enthusiasm, striving for
-              excellence and delivering high-quality work that surpasses
-              expectations.
-              {"\n"}
-              {"\n"}
-              Your satisfaction is my top priority, and I will go above and
-              beyond to ensure that your projects are executed flawlessly, on
-              time, and within budget. Together, we can navigate the challenges
-              of the digital landscape and unlock the transformative power of
-              innovative software solutions for your organization.
-              {"\n"}
-              {"\n"}
-              <strong>
-                Let's embark on this exciting journey together and achieve
-                remarkable results.
-              </strong>{" "}
-            </p>
-          </Box>
-        </div>
-      </Box>
-      <Box id="my-skillset" className={"page-section"} sx={styles.pagePadding}>
-        <div
-          className="page-section-body"
-          style={{ height: "100%", width: "100%" }}
-        >
-          <h1 className={"section-title"} style={{ textAlign: "center" }}>
-            My skillset
-          </h1>
-          <Grid container spacing={5} style={{ width: "100%" }}>
-            {skills.map((skillGroup) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  md={4}
-                  xl={3}
-                  sx={{
-                    height: 500,
-                  }}
-                >
-                  <SkillGroupComponent skillGroup={skillGroup} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </div>
-      </Box>
-
-      <Box className={"page-section"} id={"footer"}>
-        <div
-          className="page-section-body"
-          style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          <h1
-            className={"section-title"}
-            style={{ textAlign: "center", marginBottom: 1 }}
-          >
-            Get in touch
-          </h1>
-          <p>
-            Do you have any questions? Fill in the message below and we will get
-            intouch within 24h
-          </p>
-          <Grid container style={{ justifyContent: "center", marginTop: 20 }}>
-            <Grid
-              item
-              xs={12}
-              md={4}
-              sx={{ display: { xs: "none", md: "auto" } }}
-            >
-              <img src={get_in_touch} style={{ height: "100%" }} />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <TextField
-                InputLabelProps={{ style: { color: "darkgray" } }}
-                sx={styles.mailFields}
-                variant={"outlined"}
-                label={"Your email"}
-              />
-              <TextField
-                InputLabelProps={{ style: { color: "darkgray" } }}
-                sx={styles.mailFields}
-                variant={"outlined"}
-                label={"Your name"}
-              />
-              <TextField
-                InputLabelProps={{ style: { color: "darkgray" } }}
-                InputProps={{ style: { color: "white" } }}
-                sx={styles.mailFields}
-                variant={"outlined"}
-                label={"Message"}
-                multiline={true}
-                minRows={7}
-                maxRows={7}
-              />
-              <Button sx={{ width: "100%", fontWeight: "bold" }}>SEND</Button>
-            </Grid>
-          </Grid>
-          <div
-            style={{
-              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
               alignItems: "center",
-              justifyContent: "flex-end",
-              marginTop: 10,
-              marginBottom: 10,
+              position: "relative",
             }}
           >
-            <p
+            <h1
+              id="contact"
+              className={"section-title"}
+              style={{ textAlign: "center", marginBottom: 1 }}
+            >
+              Get in touch
+            </h1>
+            <p>
+              Do you have any questions? Fill in the message below and we will
+              get intouch within 24h
+            </p>
+            <MailObject />
+
+            <div
               style={{
-                textAlign: "center",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                marginTop: 10,
+                marginBottom: 10,
               }}
             >
-              &copy; 2022 Ek Tech Solutions. All rights reserved.
-            </p>
+              <p
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                &copy; 2022 Ek Tech Solutions. All rights reserved.
+              </p>
+            </div>
           </div>
-        </div>
-      </Box>
+        </Box>
+      </div>
     </div>
   );
 }

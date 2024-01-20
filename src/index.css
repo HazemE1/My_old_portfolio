@@ -15,6 +15,9 @@
   scroll-behavior: smooth;
 }
 
+.section-title {
+  @apply text-4xl md:text-6xl;
+}
 body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

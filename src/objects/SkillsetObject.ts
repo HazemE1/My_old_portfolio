@@ -14,23 +14,15 @@ export const skills: Group[] = [
   {
     skills: [
       {
-        skill: "HTML",
-        percentage: 100,
-      },
-      {
-        skill: "CSS",
-        percentage: 100,
-      },
-      {
-        skill: "JavaScript",
-        percentage: 100,
-      },
-      {
         skill: "Tailwind CSS",
         percentage: 100,
       },
       {
         skill: "React JS",
+        percentage: 100,
+      },
+      {
+        skill: "Material UI",
         percentage: 100,
       },
     ],
@@ -51,7 +43,7 @@ export const skills: Group[] = [
         percentage: 90,
       },
       {
-        skill: "Create React App",
+        skill: "CRA",
         percentage: 90,
       },
       {
